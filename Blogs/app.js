@@ -15,13 +15,13 @@ mongoose.connect(process.env.MONGO_URI)
     .then(result => {
         console.log("Data Base is connected... ");
         // console.log(result);
-       
     })
     .catch(err => console.log(err))
 app.get("/", (req, res) => {
     console.log("Welcome to Login Page");
     res.send("Welcome to Login Page")
 })
+
 
 app.post("/register", (req, res) => {
     console.log("Register API is called...");
@@ -39,7 +39,7 @@ app.post("/register", (req, res) => {
         res.status(500).json({ error: err.message });
     });
 })
-const PORT = process.env.PORT || 8080;
+const PORT =  8080;
 app.listen(PORT, () => {
     console.log(`Server is running on PORT: ${PORT}`)    
 })
