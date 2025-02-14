@@ -1,0 +1,10 @@
+const express=require('express');
+const router=express.Router();
+const loginController=require('../controllers/loginController');
+router.get('/',loginController.getUsers);
+router.post("/register",loginController.registerUser);
+router.post("/login",loginController.loginUser);
+router.get("/:id",loginController.getUserById);
+router.patch("/:id",loginController.updateUser);
+router.delete("/:id",loginController.deleteUser);
+module.exports=router;
