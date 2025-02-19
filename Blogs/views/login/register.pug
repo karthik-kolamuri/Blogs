@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        title Register
+    body
+        h1 Register Page
+        form(action="/api/user/register" method="post")
+            div
+                label(for="username") Username:
+                input(type="text" name="username" id="username" required)
+            label(for="email") Email:
+            input(type="email" name="email" required)
+            label(for="password") Password:
+            input(type="password" name="password" required)
+            button(type="submit") Register

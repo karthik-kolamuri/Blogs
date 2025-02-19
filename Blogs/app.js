@@ -2,6 +2,7 @@ const express = require("express");
 const dotEnv = require("dotenv");
 const bodyParser = require("body-parser");
 const app = express();
+const path = require("path");
 const mongoose = require("mongoose")
 dotEnv.config()
 // const User = require("./models/user_login")
@@ -9,7 +10,8 @@ const loginRoutes = require("./routes/loginRoutes")
 
 app.use(express.json())   // to parse the incoming request with JSON payloads
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.set("view engine", "pug")
+app.set("views", path.join(__dirname,"views/login"))
 
 mongoose.connect(process.env.MONGO_URI)
     .then(result => {
