@@ -2,7 +2,10 @@ const express = require("express");
 const dotEnv = require("dotenv");
 const bodyParser = require("body-parser");
 const app = express();
+const cors=require("cors")
 const path = require("path");
+const session=require("express-session");
+const mongoDBStore=require("connect-mongodb-session")(session)
 const mongoose = require("mongoose")
 dotEnv.config()
 // const User = require("./models/user_login")
@@ -13,16 +16,35 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set("view engine", "pug")
 app.set("views", path.join(__dirname,"views/login"))
 
+app.use(cors());
+const PORT =  8080;
 mongoose.connect(process.env.MONGO_URI)
-    .then(result => {
-        console.log("Data Base is connected... ");
+    .then(async(result) => {
         // console.log(result);
-       
+        await app.listen(PORT, () => {
+            console.log(`Server is running on PORT: ${PORT}`)    
+        })
+        console.log("Data Base is connected... ");
     })
     .catch(err => console.log(err))
     
-app.use("/api/user", loginRoutes)
-const PORT =  8080;
-app.listen(PORT, () => {
-    console.log(`Server is running on PORT: ${PORT}`)    
+
+const store=new mongoDBStore({
+    uri:process.env.MONGO_URI,
+    collection:"sessions"
 })
+app.use(session({
+    secret:process.env.SESSION_SECRET,
+    resave:false,
+    saveUninitialized:false,
+    store:store
+}))
+
+//All middlewares 
+app.use("/api/user", loginRoutes);
+
+
+// app.get("/session/check",async(req,res)=>{
+//     req.session.test="Test passed";
+//     res.send(req.session.test);
+// })

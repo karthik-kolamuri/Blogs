@@ -1,5 +1,7 @@
 const userLogin=require('../models/userLogin');
 const mongoose=require('mongoose');
+const bcrypt=require("bcryptjs");
+
 // const ObjectId=new mongoose.Types.ObjectId();
 
 
@@ -23,13 +25,21 @@ exports.registerUserPage=async(req,res)=>{
 exports.registerUser= (req, res) => {
     console.log(" POST Register API is called...");
     const user = req.body;
+    const hashPassword = bcrypt.hashSync(user.password, 10);
     console.log(user);
-    const newUser = new userLogin(user);
+    console.log(hashPassword);
+    
+    const newUser = new userLogin({
+        username: user.username,
+        email: user.email,
+        password: hashPassword
+    });
     newUser.save()
     .then(() => {
-        res.status(201).json({
-            message: "Successfully added"
-        });
+    req.session.personalDetails=user;
+    console.log(req.session.cookie);
+    console.log("User Registered Successfully...");
+        res.redirect('/api/user/login');
     })
     .catch(err => {
         console.error("Error:", err);
@@ -37,24 +47,40 @@ exports.registerUser= (req, res) => {
     });
 }
 
-// exports.loginUser=async(req,res)=>{
-//     console.log("Login API is called...");
-//     const {email,password}=req.body;
-//     console.log(`email:${email}`);
-//     console.log(`password:${password}`);
-//     try{
-//         const user=await userLogin.findOne({email:email});
-//         if(user.password===password){
-//             res.status(200).json(user);
-//         }
-//         else{
-//             res.status(400).json({message:"Invalid Credentials"});
-//         }
-//     }
-//     catch(err){
-//         res.status(500).json({message:err});
-//     }
-// };
+exports.userLogin=async(req,res)=>{
+    console.log("Login Page is called");
+    res.render('login');
+}
+
+exports.loginUser=async(req,res)=>{
+    console.log("POST Login API is called .... ");
+    const user=req.body;
+    console.log(user);
+    try{
+        console.log("In try block...");
+        
+        const userCred=await userLogin.findOne({email:user.email});
+        if(userCred){
+            const passwordCheck=bcrypt.compare(user.password,userCred.password);
+            if(passwordCheck){
+                console.log("User login successfully...");
+                req.session.userCredientials=userCred;
+                
+                res.status(200).json({message:"User Login Successfully..."});
+            }
+               
+        }
+        else{
+            console.log("User login failed...");
+            // window.alert("Enter correct User Credentials...")
+            res.status(404).json({message:"User Login Failed..."});
+            
+        }
+    }
+    catch(err){
+        res.status(500).json({message:"server error"})
+    }
+};
 
 exports.getUserById=async(req,res)=>{
     console.log("Get User By Id API is called...");

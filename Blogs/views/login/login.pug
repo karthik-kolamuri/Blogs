@@ -1,0 +1,13 @@
+doctype html 
+html 
+    head 
+        title Login
+    body 
+        h1 Login Page
+        form(action="/api/user/login" method="post")
+            div 
+                label(for="email") Email:
+                input(type="text" name="email" id="email" required)
+            label(for="password") Password:
+            input(type="password" name="password" required)
+            button(type="submit") Login

@@ -10,10 +10,15 @@
   "author": "Karthik Kolamuri",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "blogs": "file:",
     "body-parser": "^1.20.3",
+    "connect-mongodb-session": "^5.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "express-sessions": "^1.0.6",
     "mongoose": "^8.10.0",
     "path": "^0.12.7",
     "pug": "^3.0.3"
