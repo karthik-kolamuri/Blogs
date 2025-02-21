@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        title Create Blog Post
+        style.
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+            input, textarea {
+                width: 100%;
+                padding: 0.5rem;
+            }
+            button {
+                padding: 0.5rem 1rem;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+    body
+        h1 Create New Blog Post
+        form(action="/api/blog/add-blog" method="POST")
+            .form-group
+                label(for="title") Title:
+                input(type="text" id="title" name="title" required)
+            
+            .form-group
+                label(for="image") Image URL:
+                input(type="url" id="image" name="image" required)
+            
+            .form-group
+                label(for="author") Author:
+                input(type="text" id="author" name="author" required)
+            
+            .form-group
+                label(for="content") Content:
+                textarea(id="content" name="content" rows="10" required)
+            
+            button(type="submit") Create Blog Post

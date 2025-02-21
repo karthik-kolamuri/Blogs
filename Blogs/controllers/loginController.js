@@ -18,7 +18,7 @@ exports.getUsers=async(req,res)=>{
 
 exports.registerUserPage=async(req,res)=>{
     console.log("Register Page is called...");
-    await res.render('register');     
+    await res.render('./login/register');     
 }
 
 // register a user
@@ -49,7 +49,7 @@ exports.registerUser= (req, res) => {
 
 exports.userLogin=async(req,res)=>{
     console.log("Login Page is called");
-    res.render('login');
+    res.render('./login/login');
 }
 
 exports.loginUser=async(req,res)=>{
@@ -61,14 +61,13 @@ exports.loginUser=async(req,res)=>{
         
         const userCred=await userLogin.findOne({email:user.email});
         if(userCred){
+            console.log(userCred);
             const passwordCheck=bcrypt.compare(user.password,userCred.password);
             if(passwordCheck){
                 console.log("User login successfully...");
                 req.session.userCredientials=userCred;
-                
                 res.status(200).json({message:"User Login Successfully..."});
             }
-               
         }
         else{
             console.log("User login failed...");

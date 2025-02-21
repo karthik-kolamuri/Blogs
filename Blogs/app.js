@@ -7,14 +7,15 @@ const path = require("path");
 const session=require("express-session");
 const mongoDBStore=require("connect-mongodb-session")(session)
 const mongoose = require("mongoose")
-dotEnv.config()
+dotEnv.config();
 // const User = require("./models/user_login")
-const loginRoutes = require("./routes/loginRoutes")
+const loginRoutes = require("./routes/loginRoutes");
+const blogRoutes=require("./routes/blogRoutes");
 
 app.use(express.json())   // to parse the incoming request with JSON payloads
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set("view engine", "pug")
-app.set("views", path.join(__dirname,"views/login"))
+app.set("views", path.join(__dirname,"views"))
 
 app.use(cors());
 const PORT =  8080;
@@ -42,7 +43,7 @@ app.use(session({
 
 //All middlewares 
 app.use("/api/user", loginRoutes);
-
+app.use("/api/blog",blogRoutes);
 
 // app.get("/session/check",async(req,res)=>{
 //     req.session.test="Test passed";
