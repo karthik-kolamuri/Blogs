@@ -56,8 +56,8 @@ Welcome to the Blog Application! This project is a full-featured blogging platfo
  ├── controllers 
  │ ├── blogController.js 
  │ └── loginController.js 
- ├── models │ 
- ├── Blog.js 
+ ├── models 
+ │ ├── Blog.js 
  │ └── userLogin.js 
  ├── routes 
  │ ├── blogRoutes.js 
