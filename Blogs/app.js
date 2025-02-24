@@ -41,7 +41,10 @@ app.use(session({
     store:store
 }))
 
-//All middlewares 
+//All middlewares
+app.get("/",async(req,res)=>{
+    res.redirect("/api/")
+}) 
 app.use("/api", loginRoutes);
 app.use("/api/blog",async(req,res,next)=>{
     if(await req.session.userCredientials){
