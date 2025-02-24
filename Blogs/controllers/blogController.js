@@ -14,7 +14,7 @@ exports.createBlog=async(req,res)=>{
         const newBlog=new blogSchema(blog);
         await newBlog.save().then(result=>{
             console.log("Blog Created Successfully...");
-            res.status(200).json(result);
+            res.redirect("/api/blog/blogs");
         }).catch(err=>{
             console.log(err);
             res.status(500).json({message:err});
@@ -31,7 +31,7 @@ exports.getAllBlogs=async(req,res)=>{
     try{
         const blogs=await blogSchema.find();
         console.log("Blogs are fetched...");
-        res.status(200).json(blogs);
+        res.render('./blogs/viewBlog',{blogs:blogs})
     }catch(err){
         console.log(err);
         res.status(500).json({message:err});
@@ -47,7 +47,7 @@ exports.getBlogById=async(req,res)=>{
         const blog=await  blogSchema.findById(id);
         console.log("Blog is fetched...");
         if(blog){
-            res.status(200).json(blog);
+            res.render('./blogs/viewSingleBlog',{blog:blog});
         }
         else{
             res.status(404).json({message:"Blog not found..."});

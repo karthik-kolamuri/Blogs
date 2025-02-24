@@ -1,28 +1,7 @@
-doctype html
-html
-    head
-        title Create Blog Post
-        style.
-            .form-group {
-                margin-bottom: 1rem;
-            }
-            label {
-                display: block;
-                margin-bottom: 0.5rem;
-            }
-            input, textarea {
-                width: 100%;
-                padding: 0.5rem;
-            }
-            button {
-                padding: 0.5rem 1rem;
-                background-color: #007bff;
-                color: white;
-                border: none;
-                cursor: pointer;
-            }
+extends ../layouts/index
 
-    body
+block content
+    .form-container
         h1 Create New Blog Post
         form(action="/api/blog/add-blog" method="POST")
             .form-group
@@ -38,7 +17,54 @@ html
                 input(type="text" id="author" name="author" required)
             
             .form-group
-                label(for="content") Content:
-                textarea(id="content" name="content" rows="10" required)
+                label(for="content") Demo Content:
+                textarea(id="content" name="demoContent" rows="5" required)
+            
+            .form-group
+                label(for="full_content") Full Content:
+                textarea(id="full_content" name="fullContent" rows="10" required)
             
             button(type="submit") Create Blog Post
+    style.
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }

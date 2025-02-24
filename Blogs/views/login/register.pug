@@ -1,15 +1,16 @@
-doctype html
-html
-    head
-        title Register
-    body
+extends ../layouts/index
+
+block content
+    .form-container
         h1 Register Page
         form(action="/api/user/register" method="post")
             div
                 label(for="username") Username:
                 input(type="text" name="username" id="username" required)
-            label(for="email") Email:
-            input(type="email" name="email" required)
-            label(for="password") Password:
-            input(type="password" name="password" required)
+            div
+                label(for="email") Email:
+                input(type="email" name="email" id="email" required)
+            div
+                label(for="password") Password:
+                input(type="password" name="password" id="password" required)
             button(type="submit") Register

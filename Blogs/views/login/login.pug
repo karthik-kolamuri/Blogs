@@ -1,13 +1,29 @@
-doctype html 
-html 
-    head 
-        title Login
-    body 
+extends ../layouts/index
+
+block content
+    .form-container
         h1 Login Page
         form(action="/api/user/login" method="post")
             div 
                 label(for="email") Email:
                 input(type="text" name="email" id="email" required)
-            label(for="password") Password:
-            input(type="password" name="password" required)
+            div
+                label(for="password") Password:
+                input(type="password" name="password" id="password" required)
             button(type="submit") Login
+        .register-link
+            a(href="/api/user/register") Don't have an account? Register
+    style.
+        .register-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .register-link a:hover {
+            color: #0056b3;
+        }

@@ -1,0 +1,115 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            header {
+                background-color: #007bff;
+                color: #fff;
+                padding: 10px 20px;
+                text-align: center;
+            }
+            nav {
+                background-color: #0056b3;
+                padding: 10px 20px;
+                text-align: center;
+            }
+            nav a {
+                color: #fff;
+                margin: 0 10px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            nav a:hover {
+                text-decoration: underline;
+            }
+            footer {
+                background-color: #007bff;
+                color: #fff;
+                text-align: center;
+                padding: 10px 20px;
+                margin-top: auto;
+            }
+            .container {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+            .form-container {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                width: 90%;
+                max-width: 400px;
+                text-align: center;
+            }
+            .form-container h1 {
+                margin-bottom: 20px;
+            }
+            .form-container form div {
+                margin-bottom: 15px;
+                text-align: left;
+            }
+            .form-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
+            .form-container input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin:0px -12px
+            }
+            .form-container button {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .form-container button:hover {
+                background-color: #0056b3;
+            }
+            @media (max-width: 600px) {
+                .form-container {
+                    padding: 15px;
+                }
+                .form-container h1 {
+                    font-size: 24px;
+                }
+                .form-container button {
+                    font-size: 14px;
+                }
+            }
+    body
+        header
+            h1 Blog Application
+        nav
+            a(href="/api/") Home
+            a(href="/api/blog/blogs") All Blogs
+            a(href="/api/blog/add-blog") Add Blogs
+            //- a(href="/api/user/register") Register
+            a(href="/api/user/login") Login
+            a(href="/api/user/logout") Logout
+            
+        .container
+            block content
+        footer
+            p &copy; 2025 Blog Application

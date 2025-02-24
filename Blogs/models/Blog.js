@@ -15,9 +15,16 @@ const blogSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    content:{
+    demoContent:{
         type:String,
-        required:true
+        required:true,
+        minlength: [10, "Demo content must be at least 10 characters long"],
+        maxlength: [350, "Demo content must be at most 350 characters long"]
+    },
+    fullContent:{
+        type:String,
+        required:true,
+        trim:false
     },
     createdAt:{
         type:Date,

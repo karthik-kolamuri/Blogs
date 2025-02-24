@@ -42,7 +42,16 @@ app.use(session({
 }))
 
 //All middlewares 
-app.use("/api/user", loginRoutes);
+app.use("/api", loginRoutes);
+app.use("/api/blog",async(req,res,next)=>{
+    if(await req.session.userCredientials){
+        next();
+    }
+    else{
+        console.log("To Access the blog the User has to Login");
+        res.redirect("/api/user/login");
+    }
+})
 app.use("/api/blog",blogRoutes);
 
 // app.get("/session/check",async(req,res)=>{

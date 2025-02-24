@@ -1,4 +1,5 @@
 const mongoose=require("mongoose");
+// const Comment=require("./Comment");
 const userSchema=new mongoose.Schema({
     username:{
         type:String,

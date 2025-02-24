@@ -4,6 +4,10 @@ const bcrypt=require("bcryptjs");
 
 // const ObjectId=new mongoose.Types.ObjectId();
 
+// home page
+exports.homePage=async (req,res)=>{
+    res.render('./login/home');
+};
 
 // get all users
 exports.getUsers=async(req,res)=>{
@@ -62,11 +66,13 @@ exports.loginUser=async(req,res)=>{
         const userCred=await userLogin.findOne({email:user.email});
         if(userCred){
             console.log(userCred);
-            const passwordCheck=bcrypt.compare(user.password,userCred.password);
+            const passwordCheck=await bcrypt.compare(user.password,userCred.password);
             if(passwordCheck){
                 console.log("User login successfully...");
                 req.session.userCredientials=userCred;
-                res.status(200).json({message:"User Login Successfully..."});
+                res.redirect('/api/blog/blogs');
+            }else{
+                res.status(404).json({message:"User Login Failed,Please Enter the correct credentials..."});
             }
         }
         else{
@@ -133,6 +139,21 @@ exports.deleteUser=async(req,res)=>{
     try{
         await userLogin.findByIdAndDelete(id);
         res.status(200).json({message:"User Deleted"});
+    }
+    catch(err){
+        res.status(500).json({message:err});
+    }
+}
+
+
+exports.logoutUser=async(req,res)=>{
+    console.log("Logout User API is called...");
+    try{
+        // //req.logout();
+        req.session.destroy();
+        console.log("session is destroyed...");
+        
+        res.redirect('/api/user/login');
     }
     catch(err){
         res.status(500).json({message:err});
