@@ -53,7 +53,7 @@ app.use(async(req,res,next)=>{
 
 
 //All middlewares 
-=======
+
 //All middlewares
 app.get("/",async(req,res)=>{
     res.redirect("/api/")
