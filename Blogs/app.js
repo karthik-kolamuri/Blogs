@@ -41,11 +41,10 @@ app.use(session({
     store:store
 }))
 
-<<<<<<< HEAD
 
 app.use(async(req,res,next)=>{
     res.locals.isLoggedin=req.session.isLoggedin
-    res.locals.log=(res.locals.isLoggedin)?"Logout":"Login"
+    res.locals.log=(re.locals.isLoggedin)?"Logout":"Login"
     console.log(res.locals.log)
     next()
     
@@ -53,12 +52,6 @@ app.use(async(req,res,next)=>{
 
 
 //All middlewares 
-
-//All middlewares
-app.get("/",async(req,res)=>{
-    res.redirect("/api/")
-}) 
->>>>>>> f6526196ebc001ca6254b11238bbaa564b1c18a3
 app.use("/api", loginRoutes);
 app.use("/api/blog",async(req,res,next)=>{
     if(await req.session.userCredientials){
