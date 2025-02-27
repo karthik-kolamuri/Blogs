@@ -69,6 +69,7 @@ exports.loginUser=async(req,res)=>{
             const passwordCheck=await bcrypt.compare(user.password,userCred.password);
             if(passwordCheck){
                 console.log("User login successfully...");
+                req.session.isLoggedin=true;
                 req.session.userCredientials=userCred;
                 res.redirect('/api/blog/blogs');
             }else{

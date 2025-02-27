@@ -41,6 +41,16 @@ app.use(session({
     store:store
 }))
 
+
+app.use(async(req,res,next)=>{
+    res.locals.isLoggedin=req.session.isLoggedin
+    res.locals.log=(res.locals.isLoggedin)?"Logout":"Login"
+    console.log(res.locals.log)
+    next()
+    
+})
+
+
 //All middlewares 
 app.use("/api", loginRoutes);
 app.use("/api/blog",async(req,res,next)=>{

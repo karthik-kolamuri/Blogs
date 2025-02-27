@@ -106,9 +106,13 @@ html
             a(href="/api/blog/blogs") All Blogs
             a(href="/api/blog/add-blog") Add Blogs
             //- a(href="/api/user/register") Register
-            a(href="/api/user/login") Login
-            a(href="/api/user/logout") Logout
-            
+            //- a(href="/api/user/login") Login
+            //- a(href="/api/user/logout") Logout
+            if log ==="Login"
+                a(href="/api/user/register") Register
+                a(href="/api/user/login") Login
+            else
+                a(href="/api/user/logout") Logout
         .container
             block content
         footer
