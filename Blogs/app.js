@@ -41,10 +41,10 @@ app.use(session({
     store:store
 }))
 
-
+//creating aa locals...
 app.use(async(req,res,next)=>{
     res.locals.isLoggedin=req.session.isLoggedin
-    res.locals.log=(re.locals.isLoggedin)?"Logout":"Login"
+    res.locals.log=(res.locals.isLoggedin)?"Logout":"Login"
     console.log(res.locals.log)
     next()
     
@@ -53,15 +53,15 @@ app.use(async(req,res,next)=>{
 
 //All middlewares 
 app.use("/api", loginRoutes);
-app.use("/api/blog",async(req,res,next)=>{
-    if(await req.session.userCredientials){
-        next();
-    }
-    else{
-        console.log("To Access the blog the User has to Login");
-        res.redirect("/api/user/login");
-    }
-})
+// app.use("/api/blog",async(req,res,next)=>{
+//     if(await req.session.userCredientials){
+//         next();
+//     }
+//     else{
+//         console.log("To Access the blog the User has to Login");
+//         res.redirect("/api/user/login");
+//     }
+// })
 app.use("/api/blog",blogRoutes);
 
 // app.get("/session/check",async(req,res)=>{
