@@ -9,6 +9,7 @@ Welcome to the Blog Application! This project is a full-featured blogging platfo
 - **Blog Management**: Users can create, view, and like blog posts.
 - **Responsive Design**: The application is fully responsive and works well on all devices.
 - **Interactive UI**: The UI is designed to be user-friendly and interactive.
+- **Verification through sending  Mail after Registering the account on this Application.
 
 ## Table of Contents
 
