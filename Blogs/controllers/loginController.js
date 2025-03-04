@@ -1,6 +1,8 @@
 const userLogin=require('../models/userLogin');
 const mongoose=require('mongoose');
 const bcrypt=require("bcryptjs");
+const crypto=require('crypto')
+const pug=require('pug')
 
 const nodemailer=require('nodemailer')
 const sendgridTransport=require('nodemailer-sendgrid-transport');
@@ -8,7 +10,7 @@ const sendgridTransport=require('nodemailer-sendgrid-transport');
 
 const transporter=nodemailer.createTransport(sendgridTransport({
     auth:{
-      api_key:'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'
+      api_key:'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'
     }
   })) 
 
@@ -176,3 +178,85 @@ exports.logoutUser=async(req,res)=>{
         res.status(500).json({message:err});
     }
 }
+
+exports.getResetPassword=async(req,res)=>{
+    console.log("Get Reset Password API is called...");
+    res.render('./login/resetPass')
+}
+
+exports.postResetPassword = async (req, res) => {
+    console.log("Post Reset Password API is called...");
+    try {
+        crypto.randomBytes(32, async (err, buffer) => {
+            if (err) {
+                console.log(err);
+                return res.redirect('/api/user/reset-password');
+            }
+            const token = buffer.toString('hex');
+            console.log(token);
+            const email = req.body.email;
+            const user = await userLogin.findOne({ email: email });
+            if (!user) {
+                console.log("User Email is not found");
+                return res.redirect('/api/user/reset-password');
+            }
+            user.resetToken = token;
+            user.resetTokenExpiration = Date.now() + 3600000; // 1 hour
+            await user.save();
+
+            transporter.sendMail({
+                to: user.email,
+                from: "karthik.kolamuri@sasi.ac.in",
+                subject: "Reset Password",
+                html: pug.renderFile('views/email-template/reset-pass.pug',{
+                    name: user.name,
+                    resetToken: token
+                })
+            });
+
+            res.redirect('/api/user/login');
+        });
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).json({ message: err.message });
+    }
+};
+
+exports.getNewPassword=async(req,res)=>{
+    console.log("New Password API is called...");
+    res.render('./login/newPassword')
+
+}
+
+exports.postNewPassword = async (req, res) => {
+    console.log("Post New Password API is called...");
+    try {
+        const password = req.body.password;
+        const confirmPassword = req.body.confirmPassword;
+        const resetToken = req.params.token;
+        const user = await userLogin.findOne({ resetToken: resetToken });
+
+        if (!user) {
+            console.log("User is not found");
+            return res.redirect('/api/user/login');
+        }
+
+        if (password !== confirmPassword) {
+            console.log("Password and Confirm Password are not the same");
+            return res.redirect('/api/user/new-password');
+        }
+
+        // Hash the new password before saving
+        const hashPassword = bcrypt.hashSync(password, 10);
+        user.password = hashPassword;
+        user.resetToken = null;
+        user.resetTokenExpiration = null;
+        await user.save(); // Correctly save the user instance
+        console.log('password is updated successful...');
+        
+        res.redirect('/api/user/login');
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).json({ message: err.message });
+    }
+};
