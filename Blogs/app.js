@@ -49,10 +49,7 @@ app.use(async(req,res,next)=>{
     next()
     
 })
-app.get('/',async(req,res,next)=>{
-    res.redirect('/api/')
-})
-    
+
 
 //All middlewares 
 app.use("/api", loginRoutes);
