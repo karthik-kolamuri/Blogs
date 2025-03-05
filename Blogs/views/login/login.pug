@@ -10,6 +10,8 @@ block content
             div
                 label(for="password") Password:
                 input(type="password" name="password" id="password" required)
+            div.forget-password
+                a(href="/api/user/reset-password" ) Forget Password
             button(type="submit") Login
         .register-link
             a(href="/api/user/register") Don't have an account? Register
@@ -25,5 +27,16 @@ block content
             transition: color 0.3s ease;
         }
         .register-link a:hover {
+            color: #0056b3;
+        }
+        .forget-password{
+            border:0px;
+            
+        }
+        .forget-password a{
+            text-decoration:none;
+            font-size:12px
+        }
+        .forget-password a:hover{
             color: #0056b3;
         }

@@ -224,39 +224,58 @@ exports.postResetPassword = async (req, res) => {
 
 exports.getNewPassword=async(req,res)=>{
     console.log("New Password API is called...");
-    res.render('./login/newPassword')
+    console.log(req.params.token)
+    res.render('./login/newPassword',{
+        token:req.params.token
+    })
 
 }
+
 
 exports.postNewPassword = async (req, res) => {
     console.log("Post New Password API is called...");
     try {
-        const password = req.body.password;
-        const confirmPassword = req.body.confirmPassword;
-        const resetToken = req.params.token;
-        const user = await userLogin.findOne({ resetToken: resetToken });
+        const { password, confirmPassword } = req.body;
+        const resetToken = req.body.token;
+
+        console.log("Received Reset Token:", resetToken);
+
+        const user = await userLogin.findOne({
+            resetToken: resetToken,
+            resetTokenExpiration: { $gt: Date.now() }
+        });
 
         if (!user) {
-            console.log("User is not found");
-            return res.redirect('/api/user/login');
+            console.log("User not found or token expired");
+            return res.status(400).json({ error: "Invalid or expired token" });
         }
 
+        console.log("User found:", user.email);
+
         if (password !== confirmPassword) {
-            console.log("Password and Confirm Password are not the same");
-            return res.redirect('/api/user/new-password');
+            console.log("Password and Confirm Password do not match.");
+            return res.status(400).json({ error: "Passwords do not match." });
         }
 
         // Hash the new password before saving
-        const hashPassword = bcrypt.hashSync(password, 10);
+        console.log(password);
+        
+        const hashPassword = await bcrypt.hash(password, 10);
         user.password = hashPassword;
         user.resetToken = null;
         user.resetTokenExpiration = null;
-        await user.save(); // Correctly save the user instance
-        console.log('password is updated successful...');
+
+        try {
+            await user.save();
+            console.log("Password successfully updated.");
+            return res.redirect('/api/user/login')
+        } catch (saveError) {
+            console.error("Error saving user:", saveError);
+            return res.status(500).json({ error: "Error updating password. Try again." });
+        }
         
-        res.redirect('/api/user/login');
     } catch (err) {
-        console.error("Error:", err);
-        res.status(500).json({ message: err.message });
+        console.error("Unexpected Error:", err);
+        res.status(500).json({ error: "Internal Server Error." });
     }
 };
