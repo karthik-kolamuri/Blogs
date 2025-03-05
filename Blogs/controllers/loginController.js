@@ -10,7 +10,7 @@ const sendgridTransport=require('nodemailer-sendgrid-transport');
 
 const transporter=nodemailer.createTransport(sendgridTransport({
     auth:{
-      api_key:'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'
+      api_key:process.env.SENDGRID_API_KEY
     }
   })) 
 
