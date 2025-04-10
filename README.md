@@ -1,17 +1,22 @@
-#Blogs Application
-# Blog Application
+# 📝 Blogs Application
 
-Welcome to the Blog Application! This project is a full-featured blogging platform where users can register, log in, create, view, and like blog posts. The application is built using Node.js, Express, MongoDB, and Pug for templating.
+Welcome to the **Blogs Application** – a full-featured blogging platform where users can register, log in, create, view, and like blog posts.
 
-## Features
+Built with **Node.js**, **Express**, **MongoDB**, **NodeMailer**, **SendGrid** and **Pug** templating.
 
-- **User Authentication**: Users can register, log in, and log out.
-- **Blog Management**: Users can create, view, and like blog posts.
-- **Responsive Design**: The application is fully responsive and works well on all devices.
-- **Interactive UI**: The UI is designed to be user-friendly and interactive.
-- **Verification through sending  Mail after Registering the account on this Application.
+---
 
-## Table of Contents
+## 🚀 Features
+
+- 🔐 **User Authentication**: Register, log in, and log out securely
+- 📝 **Blog Management**: Create, view, and like blog posts
+- 📱 **Responsive Design**: Works well on all devices
+- 💬 **Interactive UI**: Designed to be user-friendly and intuitive
+- 📧 **Email Verification**: Sends a verification email after account registration
+
+---
+
+## 📦 Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -20,107 +25,140 @@ Welcome to the Blog Application! This project is a full-featured blogging platfo
 - [Screenshots](#screenshots)
 - [License](#license)
 
-## Installation
+---
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/karthik-kolamuri/Blogs.git
-    cd Blogs
-    ```
+## 🛠 Installation
 
-2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+1. **Clone the repository**
 
-3. **Set up environment variables**:
-    Create a `.env` file in the root directory and add the following:
-    ```env
-    MONGO_URI=your_mongodb_connection_string
-    SESSION_SECRET=your_session_secret
-    ```
+```bash
+git clone https://github.com/karthik-kolamuri/Blogs.git
+cd Blogs/Blogs
+```
 
-4. **Start the application**:
-    ```bash
-    npm start
-    ```
+2. **Install dependencies**
 
-## Usage
+```bash
+npm install
+```
 
-1. **Register**: Navigate to `/api/user/register` to create a new account.
-2. **Login**: Navigate to `/api/user/login` to log in to your account.
-3. **Create Blog**: Navigate to `/api/blog/add-blog` to create a new blog post.
-4. **View Blogs**: Navigate to `/api/blog/blogs` to view all blog posts.
-5. **Like Blog**: Click the like button on any blog post to like it.
+3. **Configure environment variables**
 
-## Project Structure
- ├── controllers 
- │ ├── blogController.js 
- │ └── loginController.js 
- ├── models 
- │ ├── Blog.js 
- │ └── userLogin.js 
- ├── routes 
- │ ├── blogRoutes.js 
- │ └── loginRoutes.js 
- ├── views 
- │ ├── blogs 
- │ │ ├── createBlog.pug 
- │ │ ├── viewBlog.pug 
- │ │ └── viewSingleBlog.pug 
- │ ├── layouts 
- │ │ └── index.pug 
- │ └── login 
- │ ├── login.pug 
- │ └── register.pug 
- ├── .env 
- ├── app.js 
- ├── package.json 
- └── README.md
+Create a `.env` file in the root directory with:
 
+```env
+MONGO_URI=your_mongodb_connection_string
+SESSION_SECRET=your_session_secret
+```
 
-## Routes
+4. **Start the application**
 
-### User Routes
-
-- **GET** `/api/user/register` - Render the registration page.
-- **POST** `/api/user/register` - Register a new user.
-- **GET** `/api/user/login` - Render the login page.
-- **POST** `/api/user/login` - Log in a user.
-- **GET** `/api/user/logout` - Log out the current user.
-
-### Blog Routes
-
-- **GET** `/api/blog/add-blog` - Render the create blog page.
-- **POST** `/api/blog/add-blog` - Create a new blog post.
-- **GET** `/api/blog/blogs` - View all blog posts.
-- **GET** `/api/blog/blogs/:id` - View a single blog post.
-- **POST** `/api/blog/like/:id` - Like a blog post.
-
-## Screenshots
-
-### Home Page
-![Home Page](screenshots/home.png)
-
-### Register Page
-![Register Page](screenshots/register.png)
-
-### Login Page
-![Login Page](screenshots/login.png)
-
-### Create Blog Page
-![Create Blog Page](screenshots/create-blog.png)
-
-### View Blogs Page
-![View Blogs Page](screenshots/view-blogs.png)
-
-### View Single Blog Page
-![View Single Blog Page](screenshots/view-single-blog.png)
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+```bash
+npm start
+```
 
 ---
 
-Thank you for using the Blog Application! If you have any questions or feedback, feel free to open an issue or contact the project maintainer.
+## 📋 Usage
+
+- **Register**: `/api/user/register`
+- **Login**: `/api/user/login`
+- **Create Blog**: `/api/blog/add-blog`
+- **View Blogs**: `/api/blog/blogs`
+- **Like Blog**: Use the like button on any blog post
+
+---
+
+## 🧩 Project Structure
+
+```
+├── controllers
+│   ├── blogController.js
+│   └── loginController.js
+├── models
+│   ├── Blog.js
+│   └── userLogin.js
+├── routes
+│   ├── blogRoutes.js
+│   └── loginRoutes.js
+├── views
+│   ├── blogs
+│   │   ├── createBlog.pug
+│   │   ├── viewBlog.pug
+│   │   └── viewSingleBlog.pug
+│   ├── layouts
+│   │   └── index.pug
+│   └── login
+│       ├── login.pug
+│       └── register.pug
+├── .env
+├── app.js
+├── package.json
+└── README.md
+```
+
+---
+
+## 🔁 Routes
+
+### 👤 User Routes
+
+- `GET /api/user/register` – Registration page
+- `POST /api/user/register` – Register a new user
+- `GET /api/user/login` – Login page
+- `POST /api/user/login` – Log in user
+- `GET /api/user/logout` – Log out
+- `GET /api/user/reset-password` – Reset-password page
+- `POST /api/user/reset-password` – Reset-password 
+- `GET /api/user/new-pass/:token` – New-password page
+- `POST /api/user/new-pass/:token` – New-password 
+
+ 
+
+### 📝 Blog Routes
+
+- `GET /api/blog/add-blog` – Create blog page
+- `POST /api/blog/add-blog` – Submit a blog
+- `GET /api/blog/blogs` – View all blogs
+- `GET /api/blog/blogs/:id` – View specific blog
+- `PUT /api/blog/blogs/:id` – Like a blog post
+
+
+---
+
+## 🖼️ Screenshots
+
+| Page                        | Screenshot |
+|-----------------------------|------------|
+| **🏠 Home Page**             | ![Home Page](../screenshots/Welcome-Page.png) |
+| **📝 Register Page**         | ![Register Page](../screenshots/Register-Page.png) |
+| **🔐 Login Page**            | ![Login Page](../screenshots/Login-Page.png) |
+| **🆕 Create Blog Page**      | ![Create Blog](../screenshots/Create-Blog.png) |
+| **📄 View Blogs Page**       | ![View Blogs](../screenshots/All-Blogs.png) |
+| **📑 View Single Blog Page** | ![Single Blog](../screenshots/Single-Blog.png) |
+| **🔐 Logout Page**           | ![Logout Page](../screenshots/Logout.png) |
+| **🔐 Forgot Password Page**  | ![Forgot Password](../screenshots/Forgot-Password.png) |
+| **📑 Email Template Page**   | ![Email Template](../screenshots/Email-template-sended-by-application.png) |
+| **📝 Re-Enter Password Page**| ![Re-Enter Password](../screenshots/Resetting-Password.png) |
+| **🔐 Re-Login Page**         | ![Re-Login](../screenshots/Login-Page.png) |
+| **📄 View Blogs Page**       | ![View Blogs](../screenshots/All-Blogs.png) |
+
+
+
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
+
+---
+
+## 🙌 Thank You
+
+Thanks for using **Blogs Application**!  
+Feel free to open issues or contribute ideas 💡
+
+
+📧 **Contact**: karthik.kolamuri@gmail.com  
+👤 **Author**: Karthik Kolamuri
