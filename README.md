@@ -49,12 +49,13 @@ Create a `.env` file in the root directory with:
 ```env
 MONGO_URI=your_mongodb_connection_string
 SESSION_SECRET=your_session_secret
+SENDGRID_API_KEY=your_API_key
 ```
 
 4. **Start the application**
 
 ```bash
-npm start
+npm run dev
 ```
 
 ---
@@ -130,18 +131,18 @@ npm start
 
 | Page                        | Screenshot |
 |-----------------------------|------------|
-| **🏠 Home Page**             | ![Home Page](../screenshots/Welcome-Page.png) |
-| **📝 Register Page**         | ![Register Page](../screenshots/Register-Page.png) |
-| **🔐 Login Page**            | ![Login Page](../screenshots/Login-Page.png) |
-| **🆕 Create Blog Page**      | ![Create Blog](../screenshots/Create-Blog.png) |
-| **📄 View Blogs Page**       | ![View Blogs](../screenshots/All-Blogs.png) |
-| **📑 View Single Blog Page** | ![Single Blog](../screenshots/Single-Blog.png) |
-| **🔐 Logout Page**           | ![Logout Page](../screenshots/Logout.png) |
-| **🔐 Forgot Password Page**  | ![Forgot Password](../screenshots/Forgot-Password.png) |
-| **📑 Email Template Page**   | ![Email Template](../screenshots/Email-template-sended-by-application.png) |
-| **📝 Re-Enter Password Page**| ![Re-Enter Password](../screenshots/Resetting-Password.png) |
-| **🔐 Re-Login Page**         | ![Re-Login](../screenshots/Login-Page.png) |
-| **📄 View Blogs Page**       | ![View Blogs](../screenshots/All-Blogs.png) |
+| **🏠 Home Page**             | ![Home Page](./screenshots/Welcome-Page.png) |
+| **📝 Register Page**         | ![Register Page](./screenshots/Register-Page.png) |
+| **🔐 Login Page**            | ![Login Page](./screenshots/Login-Page.png) |
+| **🆕 Create Blog Page**      | ![Create Blog](./screenshots/Create-Blog.png) |
+| **📄 View Blogs Page**       | ![View Blogs](./screenshots/All-Blogs.png) |
+| **📑 View Single Blog Page** | ![Single Blog](./screenshots/Single-Blog.png) |
+| **🔐 Logout Page**           | ![Logout Page](./screenshots/Logout.png) |
+| **🔐 Forgot Password Page**  | ![Forgot Password](./screenshots/Forgot-Password.png) |
+| **📑 Email Template Page**   | ![Email Template](./screenshots/Email-template-sended-by-application.png) |
+| **📝 Re-Enter Password Page**| ![Re-Enter Password](./screenshots/Resetting-Password.png) |
+| **🔐 Re-Login Page**         | ![Re-Login](./screenshots/Login-Page.png) |
+| **📄 View Blogs Page**       | ![View Blogs](./screenshots/All-Blogs.png) |
 
 
 
