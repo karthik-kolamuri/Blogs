@@ -161,5 +161,6 @@ Thanks for using **Blogs Application**!
 Feel free to open issues or contribute ideas 💡
 
 
-📧 **Contact**: karthik.kolamuri@gmail.com  
+📧 **Mail**: karthik.kolamuri@sasi.ac.in  
+📧 **Personal Mail**: kart91801@gmail.com
 👤 **Author**: Karthik Kolamuri
