@@ -7,6 +7,7 @@ const path = require("path");
 const session=require("express-session");
 const mongoDBStore=require("connect-mongodb-session")(session)
 const mongoose = require("mongoose")
+const util = require('util');
 dotEnv.config();
 // const User = require("./models/user_login")
 const loginRoutes = require("./routes/loginRoutes");
@@ -18,7 +19,7 @@ app.set("view engine", "pug")
 app.set("views", path.join(__dirname,"views"))
 
 app.use(cors());
-const PORT =  8080;
+const PORT =  3000;
 mongoose.connect(process.env.MONGO_URI)
     .then(async(result) => {
         // console.log(result);
